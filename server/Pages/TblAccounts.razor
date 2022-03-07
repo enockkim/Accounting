@@ -9,16 +9,26 @@
 @using Accounting.Models
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
-<PageTitle>Charts of Accounts</PageTitle>
+<PageTitle>Tbl Accounts</PageTitle>
 <RadzenContent Container="main">
   <ChildContent>
-    <RadzenHeading Size="H1" Text="Charts of Accounts">
+    <RadzenHeading Size="H1" Text="Tbl Accounts">
     </RadzenHeading>
     <div class="row">
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getTblAccountsResult" TItem="Accounting.Models.AccountingDb.TblAccount" RowSelect="@Grid0RowSelect">
+        <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="Export" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="CSV" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getTblAccountsResult" TItem="Accounting.Models.AccountingDb.TblAccount" RowDoubleClick="@Grid0RowDoubleClick">
           <Columns>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Property="gl_account_no" Title="Gl Account No">
             </RadzenDataGridColumn>

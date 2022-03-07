@@ -18,29 +18,29 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getCustomersResult" TItem="Accounting.Models.AccountingDb.Customer" RowSelect="@Grid0RowSelect">
+        <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="CSV" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getCustomersResult" FilterMode="Radzen.FilterMode.Advanced" TItem="Accounting.Models.AccountingDb.Customer" RowDoubleClick="@Grid0RowDoubleClick">
           <Columns>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="customersID" Title="Customers ID">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Company_Name" Title="Company Name">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Company_Address" Title="Company Address">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Company_Telephone_Number" Title="Company Telephone Number">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Company_City" Title="Company City">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Registration_date" FormatString="{0:MM/dd/yyyy}" Title="Registration Date">
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" FormatString="{0:MM/dd/yyyy}" Property="Registration_date" Title="Registration Date">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Contact_Person_Name" Title="Contact Person Name">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Contact_Person_Designation" Title="Contact Person Designation">
-            </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Contact_Person_Tel_number" Title="Contact Person Tel Number">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="customer_img" Title="Customer Img">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="DateAdded" FormatString="{0:MM/dd/yyyy}" Title="Date Added">
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" FormatString="{0:MM/dd/yyyy}" Property="DateAdded" Title="Date Added">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="Added_By" Title="Added By">
             </RadzenDataGridColumn>
@@ -48,7 +48,7 @@
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Property="expenseAccount" Title="Expense Account">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Customer" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
               <Template Context="accountingModelsAccountingDbCustomer">
                 <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, accountingModelsAccountingDbCustomer))" @onclick:stopPropagation="true">
                 </RadzenButton>

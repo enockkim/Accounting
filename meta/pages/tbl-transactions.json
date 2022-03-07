@@ -1,35 +1,26 @@
 {
+  "access": [
+    "Authenticated"
+  ],
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "heading",
           "name": "pageTitle",
           "size": "H1",
-          "text": "Tbl Transactions"
+          "text": "Tbl Transactions",
+          "type": "heading"
         },
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "icon": "add_circle_outline",
-                  "name": "button0",
-                  "style": {
-                    "marginBottom": "10px"
-                  },
-                  "text": "Add",
-                  "type": "button",
                   "events": {
                     "click": [
                       {
                         "path": "add-tbl-transaction",
-                        "type": "popup",
                         "then": [
                           {
                             "code": "await grid0.Reload();",
@@ -39,40 +30,116 @@
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
                             "type": "execute"
                           }
-                        ]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "name": "grid0",
-                  "allowFiltering": true,
-                  "filterMode": "advanced",
-                  "allowPaging": true,
-                  "allowSorting": true,
-                  "data": "${getTblTransactionsResult}",
-                  "events": {
-                    "loadData": [],
-                    "rowSelect": [
-                      {
-                        "parameters": [
-                          {
-                            "name": "transaction_id",
-                            "value": "${event.transaction_id}"
-                          }
                         ],
-                        "path": "edit-tbl-transaction",
-                        "type": "popup",
-                        "then": [
-                          {
-                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
-                            "type": "execute"
-                          }
-                        ]
+                        "type": "popup"
                       }
                     ]
                   },
-                  "title": "",
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "visible": false
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "condition": "${event?.Value == \"csv\"}",
+                        "fileName": "Tbl Transactions",
+                        "name": "accounting_db.getTblTransactions",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "TblAccount,AccountType"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "transaction_id,general_ledger_id,TblAccount.gl_account_name as TblAccountgl_account_name,description,credit,debit,AccountType.account_type_name as AccountTypeaccount_type_name"
+                          }
+                        ],
+                        "type": "export"
+                      },
+                      {
+                        "condition": "${event == null || event.Value == \"xlsx\"}",
+                        "fileName": "Tbl Transactions",
+                        "format": "xlsx",
+                        "name": "accounting_db.getTblTransactions",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "TblAccount,AccountType"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "transaction_id,general_ledger_id,TblAccount.gl_account_name as TblAccountgl_account_name,description,credit,debit,AccountType.account_type_name as AccountTypeaccount_type_name"
+                          }
+                        ],
+                        "type": "export"
+                      }
+                    ]
+                  },
+                  "icon": "get_app",
+                  "items": [
+                    {
+                      "icon": "",
+                      "text": "Excel",
+                      "value": "xlsx"
+                    },
+                    {
+                      "icon": "",
+                      "text": "CSV",
+                      "value": "csv"
+                    }
+                  ],
+                  "name": "splitbutton0",
+                  "style": {
+                    "marginBottom": "10px",
+                    "marginLeft": "10px"
+                  },
+                  "text": "Export",
+                  "type": "splitbutton"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "@oninput",
+                      "value": "@(async(args) => {search = $\"{args.Value}\";await grid0.GoToPage(0);await Load();})"
+                    }
+                  ],
+                  "name": "textbox0",
+                  "placeholder": "Search ...",
+                  "style": {
+                    "display": "block",
+                    "marginBottom": "10px",
+                    "width": "100%"
+                  },
+                  "type": "textbox",
+                  "value": ""
+                },
+                {
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
                   "columns": [
                     {
                       "property": "transaction_id",
@@ -83,8 +150,12 @@
                       "title": "General Ledger Id"
                     },
                     {
+                      "filterProperty": "TblAccount.gl_account_name",
+                      "groupProperty": "TblAccount.gl_account_name",
                       "property": "account_id",
-                      "title": "Account Id"
+                      "sortProperty": "TblAccount.gl_account_name",
+                      "template": "${data.TblAccount?.gl_account_name}",
+                      "title": "Tbl Account"
                     },
                     {
                       "property": "description",
@@ -99,14 +170,16 @@
                       "title": "Debit"
                     },
                     {
+                      "filterProperty": "AccountType.account_type_name",
+                      "groupProperty": "AccountType.account_type_name",
                       "property": "account_type",
+                      "sortProperty": "AccountType.account_type_name",
+                      "template": "${data.AccountType?.account_type_name}",
                       "title": "Account Type"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "width": "70px",
-                      "textAlign": "center",
                       "template": [
                         {
                           "attributes": [
@@ -116,11 +189,6 @@
                             }
                           ],
                           "buttonStyle": "danger",
-                          "icon": "close",
-                          "name": "gridDeleteButton",
-                          "text": "",
-                          "size": "sm",
-                          "type": "button",
                           "events": {
                             "click": [
                               {
@@ -150,26 +218,86 @@
                                 "type": "invoke"
                               }
                             ]
-                          }
+                          },
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "size": "sm",
+                          "text": "",
+                          "type": "button"
                         }
-                      ]
+                      ],
+                      "textAlign": "center",
+                      "width": "70px"
                     }
                   ],
-                  "type": "datagrid",
-                  "itemType": "Accounting.Models.AccountingDb.TblTransaction"
+                  "data": "${getTblTransactionsResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowDoubleClick": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "transaction_id",
+                            "value": "${event.Data.transaction_id}"
+                          }
+                        ],
+                        "path": "edit-tbl-transaction",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "filterMode": "advanced",
+                  "itemType": "Accounting.Models.AccountingDb.TblTransaction",
+                  "name": "grid0",
+                  "title": "",
+                  "type": "datagrid"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
   "events": {
     "load": [
       {
+        "condition": "string.IsNullOrEmpty(search)",
+        "name": "search",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
         "name": "accounting_db.getTblTransactions",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "$filter",
+            "operator": "or",
+            "value": [
+              {
+                "operation": "contains",
+                "property": "description",
+                "type": "string",
+                "value": "\"${search}\""
+              }
+            ]
+          },
+          {
+            "name": "$expand",
+            "value": "TblAccount,AccountType"
+          }
+        ],
         "then": [
           {
             "name": "getTblTransactionsResult",
@@ -182,9 +310,6 @@
       }
     ]
   },
-  "name": "Tbl Transactions",
   "layout": "Main",
-  "access": [
-    "Authenticated"
-  ]
+  "name": "Tbl Transactions"
 }

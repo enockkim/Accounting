@@ -57,6 +57,25 @@ namespace Accounting.Pages
         protected AccountingDbService AccountingDb { get; set; }
         protected RadzenDataGrid<Accounting.Models.AccountingDb.TblTransaction> grid0;
 
+        string _search;
+        protected string search
+        {
+            get
+            {
+                return _search;
+            }
+            set
+            {
+                if (!object.Equals(_search, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "search", NewValue = value, OldValue = _search };
+                    _search = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         IEnumerable<Accounting.Models.AccountingDb.TblTransaction> _getTblTransactionsResult;
         protected IEnumerable<Accounting.Models.AccountingDb.TblTransaction> getTblTransactionsResult
         {
@@ -90,7 +109,11 @@ namespace Accounting.Pages
         }
         protected async System.Threading.Tasks.Task Load()
         {
-            var accountingDbGetTblTransactionsResult = await AccountingDb.GetTblTransactions();
+            if (string.IsNullOrEmpty(search)) {
+                search = "";
+            }
+
+            var accountingDbGetTblTransactionsResult = await AccountingDb.GetTblTransactions(new Query() { Filter = $@"i => i.description.Contains(@0)", FilterParameters = new object[] { search }, Expand = "TblAccount,AccountType" });
             getTblTransactionsResult = accountingDbGetTblTransactionsResult;
         }
 
@@ -102,9 +125,24 @@ namespace Accounting.Pages
             await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async System.Threading.Tasks.Task Grid0RowSelect(Accounting.Models.AccountingDb.TblTransaction args)
+        protected async System.Threading.Tasks.Task Splitbutton0Click(RadzenSplitButtonItem args)
         {
-            var dialogResult = await DialogService.OpenAsync<EditTblTransaction>("Edit Tbl Transaction", new Dictionary<string, object>() { {"transaction_id", args.transaction_id} });
+            if (args?.Value == "csv")
+            {
+                await AccountingDb.ExportTblTransactionsToCSV(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblAccount,AccountType", Select = "transaction_id,general_ledger_id,TblAccount.gl_account_name as TblAccountgl_account_name,description,credit,debit,AccountType.account_type_name as AccountTypeaccount_type_name" }, $"Tbl Transactions");
+
+            }
+
+            if (args == null || args.Value == "xlsx")
+            {
+                await AccountingDb.ExportTblTransactionsToExcel(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblAccount,AccountType", Select = "transaction_id,general_ledger_id,TblAccount.gl_account_name as TblAccountgl_account_name,description,credit,debit,AccountType.account_type_name as AccountTypeaccount_type_name" }, $"Tbl Transactions");
+
+            }
+        }
+
+        protected async System.Threading.Tasks.Task Grid0RowDoubleClick(DataGridRowMouseEventArgs<Accounting.Models.AccountingDb.TblTransaction> args)
+        {
+            var dialogResult = await DialogService.OpenAsync<EditTblTransaction>("Edit Tbl Transaction", new Dictionary<string, object>() { {"transaction_id", args.Data.transaction_id} });
             await InvokeAsync(() => { StateHasChanged(); });
         }
 

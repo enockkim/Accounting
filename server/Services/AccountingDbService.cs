@@ -419,6 +419,10 @@ namespace Accounting
         {
             var items = Context.TblTransactions.AsQueryable();
 
+            items = items.Include(i => i.TblAccount);
+
+            items = items.Include(i => i.AccountType);
+
             if (query != null)
             {
                 if (!string.IsNullOrEmpty(query.Expand))
@@ -487,6 +491,8 @@ namespace Accounting
             catch
             {
                 Context.Entry(tblTransaction).State = EntityState.Detached;
+                tblTransaction.TblAccount = null;
+                tblTransaction.AccountType = null;
                 throw;
             }
 
@@ -503,6 +509,7 @@ namespace Accounting
             var itemToDelete = Context.AccountTypes
                               .Where(i => i.account_type_id == accountTypeId)
                               .Include(i => i.TblAccounts)
+                              .Include(i => i.TblTransactions)
                               .FirstOrDefault();
 
             if (itemToDelete == null)
@@ -758,6 +765,7 @@ namespace Accounting
         {
             var itemToDelete = Context.TblAccounts
                               .Where(i => i.gl_account_no == glAccountNo)
+                              .Include(i => i.TblTransactions)
                               .FirstOrDefault();
 
             if (itemToDelete == null)
@@ -878,6 +886,10 @@ namespace Accounting
             var items = Context.TblTransactions
                               .AsNoTracking()
                               .Where(i => i.transaction_id == transactionId);
+
+            items = items.Include(i => i.TblAccount);
+
+            items = items.Include(i => i.AccountType);
 
             var itemToReturn = items.FirstOrDefault();
 

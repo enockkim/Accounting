@@ -245,12 +245,13 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "data": "${getAccountTypesResult}",
+                              "data": "${getAccountTypesForaccount_type_idResult}",
                               "textProperty": "account_type_name",
                               "valueProperty": "account_type_id",
                               "placeholder": "Choose AccountType",
                               "valueType": "int",
-                              "type": "dropdown",
+                              "showSearch": false,
+                              "type": "dropdown-datagrid",
                               "name": "account_type_id",
                               "style": {
                                 "display": "block",
@@ -352,7 +353,7 @@
         "parameters": [],
         "then": [
           {
-            "name": "getAccountTypesResult",
+            "name": "getAccountTypesForaccount_type_idResult",
             "type": "set",
             "value": "${result}",
             "valueType": "IEnumerable<Accounting.Models.AccountingDb.AccountType>"
@@ -369,8 +370,8 @@
     ]
   },
   "name": "Add Tbl Account",
-  "layout": "Main",
   "access": [
     "Authenticated"
-  ]
+  ],
+  "layout": "Main"
 }

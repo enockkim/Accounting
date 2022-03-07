@@ -722,8 +722,8 @@
     ]
   },
   "name": "Edit Customer",
-  "layout": "Main",
   "access": [
     "Authenticated"
-  ]
+  ],
+  "layout": "Main"
 }

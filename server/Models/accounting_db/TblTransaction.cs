@@ -24,6 +24,7 @@ namespace Accounting.Models.AccountingDb
       get;
       set;
     }
+    public TblAccount TblAccount { get; set; }
     public string description
     {
       get;
@@ -44,5 +45,6 @@ namespace Accounting.Models.AccountingDb
       get;
       set;
     }
+    public AccountType AccountType { get; set; }
   }
 }

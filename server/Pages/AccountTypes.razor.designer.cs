@@ -57,6 +57,25 @@ namespace Accounting.Pages
         protected AccountingDbService AccountingDb { get; set; }
         protected RadzenDataGrid<Accounting.Models.AccountingDb.AccountType> grid0;
 
+        string _search;
+        protected string search
+        {
+            get
+            {
+                return _search;
+            }
+            set
+            {
+                if (!object.Equals(_search, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "search", NewValue = value, OldValue = _search };
+                    _search = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         IEnumerable<Accounting.Models.AccountingDb.AccountType> _getAccountTypesResult;
         protected IEnumerable<Accounting.Models.AccountingDb.AccountType> getAccountTypesResult
         {
@@ -90,7 +109,11 @@ namespace Accounting.Pages
         }
         protected async System.Threading.Tasks.Task Load()
         {
-            var accountingDbGetAccountTypesResult = await AccountingDb.GetAccountTypes();
+            if (string.IsNullOrEmpty(search)) {
+                search = "";
+            }
+
+            var accountingDbGetAccountTypesResult = await AccountingDb.GetAccountTypes(new Query() { Filter = $@"i => i.account_type_name.Contains(@0)", FilterParameters = new object[] { search } });
             getAccountTypesResult = accountingDbGetAccountTypesResult;
         }
 
@@ -102,9 +125,24 @@ namespace Accounting.Pages
             await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async System.Threading.Tasks.Task Grid0RowSelect(Accounting.Models.AccountingDb.AccountType args)
+        protected async System.Threading.Tasks.Task Splitbutton0Click(RadzenSplitButtonItem args)
         {
-            var dialogResult = await DialogService.OpenAsync<EditAccountType>("Edit Account Type", new Dictionary<string, object>() { {"account_type_id", args.account_type_id} });
+            if (args?.Value == "csv")
+            {
+                await AccountingDb.ExportAccountTypesToCSV(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "", Select = "account_type_id,account_type_name" }, $"Account Types");
+
+            }
+
+            if (args == null || args.Value == "xlsx")
+            {
+                await AccountingDb.ExportAccountTypesToExcel(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "", Select = "account_type_id,account_type_name" }, $"Account Types");
+
+            }
+        }
+
+        protected async System.Threading.Tasks.Task Grid0RowDoubleClick(DataGridRowMouseEventArgs<Accounting.Models.AccountingDb.AccountType> args)
+        {
+            var dialogResult = await DialogService.OpenAsync<EditAccountType>("Edit Account Type", new Dictionary<string, object>() { {"account_type_id", args.Data.account_type_id} });
             await InvokeAsync(() => { StateHasChanged(); });
         }
 

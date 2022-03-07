@@ -1,35 +1,26 @@
 {
+  "access": [
+    "Authenticated"
+  ],
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "heading",
           "name": "pageTitle",
           "size": "H1",
-          "text": "Customers"
+          "text": "Customers",
+          "type": "heading"
         },
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "icon": "add_circle_outline",
-                  "name": "button0",
-                  "style": {
-                    "marginBottom": "10px"
-                  },
-                  "text": "Add",
-                  "type": "button",
                   "events": {
                     "click": [
                       {
                         "path": "add-customer",
-                        "type": "popup",
                         "then": [
                           {
                             "code": "await grid0.Reload();",
@@ -39,40 +30,115 @@
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
                             "type": "execute"
                           }
-                        ]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "name": "grid0",
-                  "allowFiltering": true,
-                  "filterMode": "advanced",
-                  "allowPaging": true,
-                  "allowSorting": true,
-                  "data": "${getCustomersResult}",
-                  "events": {
-                    "loadData": [],
-                    "rowSelect": [
-                      {
-                        "parameters": [
-                          {
-                            "name": "customersID",
-                            "value": "${event.customersID}"
-                          }
                         ],
-                        "path": "edit-customer",
-                        "type": "popup",
-                        "then": [
-                          {
-                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
-                            "type": "execute"
-                          }
-                        ]
+                        "type": "popup"
                       }
                     ]
                   },
-                  "title": "",
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button"
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "condition": "${event?.Value == \"csv\"}",
+                        "fileName": "Customers",
+                        "name": "accounting_db.getCustomers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$select",
+                            "value": "customersID,Company_Name,Company_Address,Company_Telephone_Number,Company_City,Registration_date,Contact_Person_Name,Contact_Person_Designation,Contact_Person_Tel_number,customer_img,DateAdded,Added_By,revenueAccount,expenseAccount"
+                          }
+                        ],
+                        "type": "export"
+                      },
+                      {
+                        "condition": "${event == null || event.Value == \"xlsx\"}",
+                        "fileName": "Customers",
+                        "format": "xlsx",
+                        "name": "accounting_db.getCustomers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$select",
+                            "value": "customersID,Company_Name,Company_Address,Company_Telephone_Number,Company_City,Registration_date,Contact_Person_Name,Contact_Person_Designation,Contact_Person_Tel_number,customer_img,DateAdded,Added_By,revenueAccount,expenseAccount"
+                          }
+                        ],
+                        "type": "export"
+                      }
+                    ]
+                  },
+                  "icon": "get_app",
+                  "items": [
+                    {
+                      "icon": "",
+                      "text": "Excel",
+                      "value": "xlsx"
+                    },
+                    {
+                      "icon": "",
+                      "text": "CSV",
+                      "value": "csv"
+                    }
+                  ],
+                  "name": "splitbutton0",
+                  "style": {
+                    "marginBottom": "10px",
+                    "marginLeft": "10px"
+                  },
+                  "text": "Export",
+                  "type": "splitbutton"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "@oninput",
+                      "value": "@(async(args) => {search = $\"{args.Value}\";await grid0.GoToPage(0);await Load();})"
+                    }
+                  ],
+                  "name": "textbox0",
+                  "placeholder": "Search ...",
+                  "style": {
+                    "display": "block",
+                    "marginBottom": "10px",
+                    "width": "100%"
+                  },
+                  "type": "textbox",
+                  "value": ""
+                },
+                {
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
                   "columns": [
                     {
                       "property": "customersID",
@@ -83,20 +149,8 @@
                       "title": "Company Name"
                     },
                     {
-                      "property": "Company_Address",
-                      "title": "Company Address"
-                    },
-                    {
-                      "property": "Company_Telephone_Number",
-                      "title": "Company Telephone Number"
-                    },
-                    {
-                      "property": "Company_City",
-                      "title": "Company City"
-                    },
-                    {
-                      "property": "Registration_date",
                       "formatString": "{0:MM/dd/yyyy}",
+                      "property": "Registration_date",
                       "title": "Registration Date"
                     },
                     {
@@ -104,20 +158,12 @@
                       "title": "Contact Person Name"
                     },
                     {
-                      "property": "Contact_Person_Designation",
-                      "title": "Contact Person Designation"
-                    },
-                    {
                       "property": "Contact_Person_Tel_number",
                       "title": "Contact Person Tel Number"
                     },
                     {
-                      "property": "customer_img",
-                      "title": "Customer Img"
-                    },
-                    {
-                      "property": "DateAdded",
                       "formatString": "{0:MM/dd/yyyy}",
+                      "property": "DateAdded",
                       "title": "Date Added"
                     },
                     {
@@ -135,8 +181,6 @@
                     {
                       "filterable": false,
                       "sortable": false,
-                      "width": "70px",
-                      "textAlign": "center",
                       "template": [
                         {
                           "attributes": [
@@ -146,11 +190,6 @@
                             }
                           ],
                           "buttonStyle": "danger",
-                          "icon": "close",
-                          "name": "gridDeleteButton",
-                          "text": "",
-                          "size": "sm",
-                          "type": "button",
                           "events": {
                             "click": [
                               {
@@ -180,26 +219,130 @@
                                 "type": "invoke"
                               }
                             ]
-                          }
+                          },
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "size": "sm",
+                          "text": "",
+                          "type": "button"
                         }
-                      ]
+                      ],
+                      "textAlign": "center",
+                      "width": "70px"
                     }
                   ],
-                  "type": "datagrid",
-                  "itemType": "Accounting.Models.AccountingDb.Customer"
+                  "data": "${getCustomersResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowDoubleClick": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "customersID",
+                            "value": "${event.Data.customersID}"
+                          }
+                        ],
+                        "path": "edit-customer",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "filterMode": "advanced",
+                  "itemType": "Accounting.Models.AccountingDb.Customer",
+                  "name": "grid0",
+                  "title": "",
+                  "type": "datagrid"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
   "events": {
     "load": [
       {
+        "condition": "string.IsNullOrEmpty(search)",
+        "name": "search",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
         "name": "accounting_db.getCustomers",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "$filter",
+            "operator": "or",
+            "value": [
+              {
+                "operation": "contains",
+                "property": "Company_Name",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Company_Address",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Company_Telephone_Number",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Company_City",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Contact_Person_Name",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Contact_Person_Designation",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Contact_Person_Tel_number",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "customer_img",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Added_By",
+                "type": "string",
+                "value": "\"${search}\""
+              }
+            ]
+          }
+        ],
         "then": [
           {
             "name": "getCustomersResult",
@@ -212,9 +355,6 @@
       }
     ]
   },
-  "name": "Customers",
   "layout": "Main",
-  "access": [
-    "Authenticated"
-  ]
+  "name": "Customers"
 }

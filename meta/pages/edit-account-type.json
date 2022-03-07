@@ -214,8 +214,8 @@
     ]
   },
   "name": "Edit Account Type",
-  "layout": "Main",
   "access": [
     "Authenticated"
-  ]
+  ],
+  "layout": "Main"
 }

@@ -28,12 +28,12 @@
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Account Id" Component="account_id" style="width: 100%">
+                <RadzenLabel Text="Tbl Account" Component="account_id" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@(tbltransaction.account_id)" Name="Account_id">
-                </RadzenNumeric>
+                <RadzenDropDownDataGrid Data="@(getTblAccountsForaccount_idResult)" TextProperty="gl_account_name" ValueProperty="gl_account_no" Placeholder="Choose TblAccount" ShowSearch="false" style="width: 100%" @bind-Value="@(tbltransaction.account_id)" Name="Account_id">
+                </RadzenDropDownDataGrid>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
@@ -72,8 +72,8 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@(tbltransaction.account_type)" Name="Account_type">
-                </RadzenNumeric>
+                <RadzenDropDownDataGrid Data="@(getAccountTypesForaccount_typeResult)" TextProperty="account_type_name" ValueProperty="account_type_id" Placeholder="Choose AccountType" ShowSearch="false" style="width: 100%" @bind-Value="@(tbltransaction.account_type)" Name="Account_type">
+                </RadzenDropDownDataGrid>
               </div>
             </div>
             <div class="row">

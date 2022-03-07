@@ -37,21 +37,21 @@
                 },
                 {
                   "class": "col-6 text-right",
-                  "name": "rightCol",
-                  "type": "col",
                   "components": [
                     {
-                      "type": "profilemenu",
                       "name": "profilemenu0",
-                      "visible": "${Security.IsAuthenticated()}",
                       "template": [
                         {
                           "email": "${Security.User?.Name}",
                           "type": "gravatar"
                         }
-                      ]
+                      ],
+                      "type": "profilemenu",
+                      "visible": "${Security.IsAuthenticated()}"
                     }
-                  ]
+                  ],
+                  "name": "rightCol",
+                  "type": "col"
                 }
               ],
               "name": "headerRow",
@@ -84,6 +84,19 @@
                     {
                       "path": "tbl-transactions",
                       "text": "Journal Entries"
+                    },
+                    {
+                      "text": "Planning and Budgeting"
+                    },
+                    {
+                      "text": "Cash Management"
+                    },
+                    {
+                      "text": "Setup"
+                    },
+                    {
+                      "items": [],
+                      "text": "Reports"
                     }
                   ],
                   "text": "General Ledger"
@@ -91,20 +104,55 @@
                 {
                   "items": [
                     {
-                      "path": "suppliers",
-                      "text": "Suppliers"
+                      "path": "customers",
+                      "text": "Customers Details"
+                    },
+                    {
+                      "text": "Reports"
+                    },
+                    {
+                      "text": "Credit Notes"
                     }
                   ],
-                  "text": "Accounts Payabel"
+                  "text": "Accounts Recievable"
                 },
                 {
                   "items": [
                     {
-                      "path": "customers",
-                      "text": "Customers"
+                      "path": "suppliers",
+                      "text": "Vendors Details"
+                    },
+                    {
+                      "text": "Bills"
+                    },
+                    {
+                      "text": "Credit Notes"
+                    },
+                    {
+                      "text": "Refunds"
+                    },
+                    {
+                      "text": "Payments"
+                    },
+                    {
+                      "text": "Purchases"
+                    },
+                    {
+                      "text": "Reports"
                     }
                   ],
-                  "text": "Accounts Recievable"
+                  "text": "Accounts Payable"
+                },
+                {
+                  "items": [
+                    {
+                      "text": "Products"
+                    },
+                    {
+                      "text": "Reports"
+                    }
+                  ],
+                  "text": "Inventory"
                 }
               ],
               "name": "panelmenu0",

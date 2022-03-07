@@ -1,659 +1,660 @@
 {
+  "access": [
+    "Authenticated"
+  ],
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "type": "template-form",
-                  "name": "form0",
                   "components": [
                     {
-                      "type": "row",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Company Name",
                               "component": "Company_Name",
                               "name": "Company_NameLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Company Name",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 100,
-                              "type": "textbox",
                               "name": "Company_Name",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Company_Name}"
+                              "type": "textbox",
+                              "value": "${customer.Company_Name}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Company_NameRequiredValidator",
                               "component": "Company_Name",
-                              "text": "Company_Name is required",
+                              "name": "Company_NameRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Company_Name is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Company Address",
                               "component": "Company_Address",
                               "name": "Company_AddressLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Company Address",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 100,
-                              "type": "textbox",
                               "name": "Company_Address",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Company_Address}"
+                              "type": "textbox",
+                              "value": "${customer.Company_Address}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Company_AddressRequiredValidator",
                               "component": "Company_Address",
-                              "text": "Company_Address is required",
+                              "name": "Company_AddressRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Company_Address is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Company Telephone Number",
                               "component": "Company_Telephone_Number",
                               "name": "Company_Telephone_NumberLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Company Telephone Number",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 50,
-                              "type": "textbox",
                               "name": "Company_Telephone_Number",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Company_Telephone_Number}"
+                              "type": "textbox",
+                              "value": "${customer.Company_Telephone_Number}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Company_Telephone_NumberRequiredValidator",
                               "component": "Company_Telephone_Number",
-                              "text": "Company_Telephone_Number is required",
+                              "name": "Company_Telephone_NumberRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Company_Telephone_Number is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Company City",
                               "component": "Company_City",
                               "name": "Company_CityLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Company City",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 100,
-                              "type": "textbox",
                               "name": "Company_City",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Company_City}"
+                              "type": "textbox",
+                              "value": "${customer.Company_City}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Company_CityRequiredValidator",
                               "component": "Company_City",
-                              "text": "Company_City is required",
+                              "name": "Company_CityRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Company_City is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Registration Date",
                               "component": "Registration_date",
                               "name": "Registration_dateLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Registration Date",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "DateTime",
                               "dateFormat": "MM/dd/yyyy",
-                              "type": "datepicker",
                               "name": "Registration_date",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Registration_date}"
+                              "type": "datepicker",
+                              "value": "${customer.Registration_date}",
+                              "valueType": "DateTime"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Registration_dateRequiredValidator",
                               "component": "Registration_date",
-                              "text": "Registration_date is required",
+                              "name": "Registration_dateRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Registration_date is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Contact Person Name",
                               "component": "Contact_Person_Name",
                               "name": "Contact_Person_NameLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Contact Person Name",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 100,
-                              "type": "textbox",
                               "name": "Contact_Person_Name",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Contact_Person_Name}"
+                              "type": "textbox",
+                              "value": "${customer.Contact_Person_Name}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Contact_Person_NameRequiredValidator",
                               "component": "Contact_Person_Name",
-                              "text": "Contact_Person_Name is required",
+                              "name": "Contact_Person_NameRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Contact_Person_Name is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Contact Person Designation",
                               "component": "Contact_Person_Designation",
                               "name": "Contact_Person_DesignationLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Contact Person Designation",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 100,
-                              "type": "textbox",
                               "name": "Contact_Person_Designation",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Contact_Person_Designation}"
+                              "type": "textbox",
+                              "value": "${customer.Contact_Person_Designation}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Contact_Person_DesignationRequiredValidator",
                               "component": "Contact_Person_Designation",
-                              "text": "Contact_Person_Designation is required",
+                              "name": "Contact_Person_DesignationRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Contact_Person_Designation is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Contact Person Tel Number",
                               "component": "Contact_Person_Tel_number",
                               "name": "Contact_Person_Tel_numberLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Contact Person Tel Number",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 50,
-                              "type": "textbox",
                               "name": "Contact_Person_Tel_number",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Contact_Person_Tel_number}"
+                              "type": "textbox",
+                              "value": "${customer.Contact_Person_Tel_number}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Contact_Person_Tel_numberRequiredValidator",
                               "component": "Contact_Person_Tel_number",
-                              "text": "Contact_Person_Tel_number is required",
+                              "name": "Contact_Person_Tel_numberRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Contact_Person_Tel_number is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Customer Img",
                               "component": "customer_img",
                               "name": "customer_imgLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Customer Img",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 100,
-                              "type": "textbox",
                               "name": "customer_img",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.customer_img}"
+                              "type": "textbox",
+                              "value": "${customer.customer_img}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "customer_imgRequiredValidator",
                               "component": "customer_img",
-                              "text": "customer_img is required",
+                              "name": "customer_imgRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "customer_img is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Date Added",
                               "component": "DateAdded",
                               "name": "DateAddedLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Date Added",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "DateTime",
                               "dateFormat": "MM/dd/yyyy",
-                              "type": "datepicker",
                               "name": "DateAdded",
                               "style": {
                                 "width": "100%"
                               },
-                              "value": "${customer.DateAdded}"
+                              "type": "datepicker",
+                              "value": "${customer.DateAdded}",
+                              "valueType": "DateTime"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Added By",
                               "component": "Added_By",
                               "name": "Added_ByLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Added By",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 50,
-                              "type": "textbox",
                               "name": "Added_By",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${customer.Added_By}"
+                              "type": "textbox",
+                              "value": "${customer.Added_By}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "Added_ByRequiredValidator",
                               "component": "Added_By",
-                              "text": "Added_By is required",
+                              "name": "Added_ByRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Added_By is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Revenue Account",
                               "component": "revenueAccount",
                               "name": "revenueAccountLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Revenue Account",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "int?",
-                              "type": "numeric",
+                              "events": {
+                                "ContextMenu": []
+                              },
                               "name": "revenueAccount",
                               "style": {
                                 "width": "100%"
                               },
-                              "value": "${customer.revenueAccount}"
+                              "type": "numeric",
+                              "value": "${customer.revenueAccount}",
+                              "valueType": "int?"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Expense Account",
                               "component": "expenseAccount",
                               "name": "expenseAccountLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Expense Account",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "int?",
-                              "type": "numeric",
                               "name": "expenseAccount",
                               "style": {
                                 "width": "100%"
                               },
-                              "value": "${customer.expenseAccount}"
+                              "type": "numeric",
+                              "value": "${customer.expenseAccount}",
+                              "valueType": "int?"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "type": "row",
                       "components": [
                         {
-                          "type": "col",
                           "class": "col offset-sm-3",
                           "components": [
                             {
-                              "type": "button",
+                              "buttonStyle": "primary",
                               "buttonType": "submit",
                               "icon": "save",
                               "text": "Save",
-                              "buttonStyle": "primary"
+                              "type": "button"
                             },
                             {
-                              "type": "button",
                               "buttonStyle": "light",
-                              "style": {
-                                "marginLeft": "1rem"
-                              },
-                              "text": "Cancel",
                               "events": {
                                 "click": [
                                   {
                                     "type": "close-popup"
                                   }
                                 ]
-                              }
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
+                      ],
+                      "type": "row"
                     }
                   ],
+                  "data": "${customer}",
                   "events": {
                     "submit": [
                       {
@@ -674,23 +675,28 @@
                         ],
                         "then": [
                           {
-                            "type": "close-popup",
-                            "result": "${customer}"
+                            "result": "${customer}",
+                            "type": "close-popup"
                           }
                         ],
                         "type": "invoke"
                       }
                     ]
                   },
-                  "data": "${customer}",
-                  "visible": "${customer != null}",
-                  "itemType": "Accounting.Models.AccountingDb.Customer"
+                  "itemType": "Accounting.Models.AccountingDb.Customer",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${customer != null}"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
   "events": {
@@ -703,9 +709,6 @@
       }
     ]
   },
-  "name": "Add Customer",
   "layout": "Main",
-  "access": [
-    "Authenticated"
-  ]
+  "name": "Add Customer"
 }

@@ -45,6 +45,98 @@
                   }
                 },
                 {
+                  "events": {
+                    "click": [
+                      {
+                        "condition": "${event?.Value == \"csv\"}",
+                        "fileName": "Tbl Accounts",
+                        "name": "accounting_db.getTblAccounts",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "AccountType"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "gl_account_no,gl_account_name,current_balance,opening_balance,date,status,AccountType.account_type_name as AccountTypeaccount_type_name"
+                          }
+                        ],
+                        "type": "export"
+                      },
+                      {
+                        "condition": "${event == null || event.Value == \"xlsx\"}",
+                        "fileName": "Tbl Accounts",
+                        "format": "xlsx",
+                        "name": "accounting_db.getTblAccounts",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "AccountType"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "gl_account_no,gl_account_name,current_balance,opening_balance,date,status,AccountType.account_type_name as AccountTypeaccount_type_name"
+                          }
+                        ],
+                        "type": "export"
+                      }
+                    ]
+                  },
+                  "icon": "get_app",
+                  "items": [
+                    {
+                      "icon": "",
+                      "text": "Excel",
+                      "value": "xlsx"
+                    },
+                    {
+                      "icon": "",
+                      "text": "CSV",
+                      "value": "csv"
+                    }
+                  ],
+                  "name": "splitbutton0",
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Export",
+                  "type": "splitbutton"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "@oninput",
+                      "value": "@(async(args) => {search = $\"{args.Value}\";await grid0.GoToPage(0);await Load();})"
+                    }
+                  ],
+                  "name": "textbox0",
+                  "placeholder": "Search ...",
+                  "style": {
+                    "display": "block",
+                    "marginBottom": "10px",
+                    "width": "100%"
+                  },
+                  "type": "textbox",
+                  "value": ""
+                },
+                {
                   "name": "grid0",
                   "allowFiltering": true,
                   "filterMode": "advanced",
@@ -53,12 +145,12 @@
                   "data": "${getTblAccountsResult}",
                   "events": {
                     "loadData": [],
-                    "rowSelect": [
+                    "rowDoubleClick": [
                       {
                         "parameters": [
                           {
                             "name": "gl_account_no",
-                            "value": "${event.gl_account_no}"
+                            "value": "${event.Data.gl_account_no}"
                           }
                         ],
                         "path": "edit-tbl-account",
@@ -173,8 +265,39 @@
   "events": {
     "load": [
       {
+        "condition": "string.IsNullOrEmpty(search)",
+        "name": "search",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
         "name": "accounting_db.getTblAccounts",
         "parameters": [
+          {
+            "name": "$filter",
+            "operator": "or",
+            "value": [
+              {
+                "operation": "contains",
+                "property": "gl_account_name",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "opening_balance",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "status",
+                "type": "string",
+                "value": "\"${search}\""
+              }
+            ]
+          },
           {
             "name": "$expand",
             "value": "AccountType"
@@ -193,8 +316,8 @@
     ]
   },
   "name": "Tbl Accounts",
-  "layout": "Main",
   "access": [
     "Authenticated"
-  ]
+  ],
+  "layout": "Main"
 }

@@ -16,6 +16,7 @@ namespace Accounting.Models.AccountingDb
     }
 
     public ICollection<TblAccount> TblAccounts { get; set; }
+    public ICollection<TblTransaction> TblTransactions { get; set; }
     public string account_type_name
     {
       get;

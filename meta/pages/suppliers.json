@@ -45,6 +45,98 @@
                   }
                 },
                 {
+                  "events": {
+                    "click": [
+                      {
+                        "condition": "${event?.Value == \"csv\"}",
+                        "fileName": "Suppliers",
+                        "name": "accounting_db.getSuppliers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$select",
+                            "value": "suppliersID,Company_Name,Company_Address,Company_Telephone_Number,Company_City,Registration_date,Contact_Person_Name,Contact_Person_Designation,Contact_Person_Tel_number,supplier_img,DateAdded,Added_By,expenseAccount,revenueAccount"
+                          }
+                        ],
+                        "type": "export"
+                      },
+                      {
+                        "condition": "${event == null || event.Value == \"xlsx\"}",
+                        "fileName": "Suppliers",
+                        "format": "xlsx",
+                        "name": "accounting_db.getSuppliers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$select",
+                            "value": "suppliersID,Company_Name,Company_Address,Company_Telephone_Number,Company_City,Registration_date,Contact_Person_Name,Contact_Person_Designation,Contact_Person_Tel_number,supplier_img,DateAdded,Added_By,expenseAccount,revenueAccount"
+                          }
+                        ],
+                        "type": "export"
+                      }
+                    ]
+                  },
+                  "icon": "get_app",
+                  "items": [
+                    {
+                      "icon": "",
+                      "text": "Excel",
+                      "value": "xlsx"
+                    },
+                    {
+                      "icon": "",
+                      "text": "CSV",
+                      "value": "csv"
+                    }
+                  ],
+                  "name": "splitbutton0",
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Export",
+                  "type": "splitbutton"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "@oninput",
+                      "value": "@(async(args) => {search = $\"{args.Value}\";await grid0.GoToPage(0);await Load();})"
+                    }
+                  ],
+                  "name": "textbox0",
+                  "placeholder": "Search ...",
+                  "style": {
+                    "display": "block",
+                    "marginBottom": "10px",
+                    "width": "100%"
+                  },
+                  "type": "textbox",
+                  "value": ""
+                },
+                {
                   "name": "grid0",
                   "allowFiltering": true,
                   "filterMode": "advanced",
@@ -53,12 +145,12 @@
                   "data": "${getSuppliersResult}",
                   "events": {
                     "loadData": [],
-                    "rowSelect": [
+                    "rowDoubleClick": [
                       {
                         "parameters": [
                           {
                             "name": "suppliersID",
-                            "value": "${event.suppliersID}"
+                            "value": "${event.Data.suppliersID}"
                           }
                         ],
                         "path": "edit-supplier",
@@ -198,8 +290,76 @@
   "events": {
     "load": [
       {
+        "condition": "string.IsNullOrEmpty(search)",
+        "name": "search",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
         "name": "accounting_db.getSuppliers",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "$filter",
+            "operator": "or",
+            "value": [
+              {
+                "operation": "contains",
+                "property": "Company_Name",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Company_Address",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Company_Telephone_Number",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Company_City",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Contact_Person_Name",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Contact_Person_Designation",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Contact_Person_Tel_number",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "supplier_img",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Added_By",
+                "type": "string",
+                "value": "\"${search}\""
+              }
+            ]
+          }
+        ],
         "then": [
           {
             "name": "getSuppliersResult",
@@ -213,8 +373,8 @@
     ]
   },
   "name": "Suppliers",
-  "layout": "Main",
   "access": [
     "Authenticated"
-  ]
+  ],
+  "layout": "Main"
 }

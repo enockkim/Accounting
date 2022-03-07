@@ -57,6 +57,25 @@ namespace Accounting.Pages
         protected AccountingDbService AccountingDb { get; set; }
         protected RadzenDataGrid<Accounting.Models.AccountingDb.Customer> grid0;
 
+        string _search;
+        protected string search
+        {
+            get
+            {
+                return _search;
+            }
+            set
+            {
+                if (!object.Equals(_search, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "search", NewValue = value, OldValue = _search };
+                    _search = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         IEnumerable<Accounting.Models.AccountingDb.Customer> _getCustomersResult;
         protected IEnumerable<Accounting.Models.AccountingDb.Customer> getCustomersResult
         {
@@ -90,7 +109,11 @@ namespace Accounting.Pages
         }
         protected async System.Threading.Tasks.Task Load()
         {
-            var accountingDbGetCustomersResult = await AccountingDb.GetCustomers();
+            if (string.IsNullOrEmpty(search)) {
+                search = "";
+            }
+
+            var accountingDbGetCustomersResult = await AccountingDb.GetCustomers(new Query() { Filter = $@"i => i.Company_Name.Contains(@0) || i.Company_Address.Contains(@1) || i.Company_Telephone_Number.Contains(@2) || i.Company_City.Contains(@3) || i.Contact_Person_Name.Contains(@4) || i.Contact_Person_Designation.Contains(@5) || i.Contact_Person_Tel_number.Contains(@6) || i.customer_img.Contains(@7) || i.Added_By.Contains(@8)", FilterParameters = new object[] { search, search, search, search, search, search, search, search, search } });
             getCustomersResult = accountingDbGetCustomersResult;
         }
 
@@ -102,9 +125,24 @@ namespace Accounting.Pages
             await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async System.Threading.Tasks.Task Grid0RowSelect(Accounting.Models.AccountingDb.Customer args)
+        protected async System.Threading.Tasks.Task Splitbutton0Click(RadzenSplitButtonItem args)
         {
-            var dialogResult = await DialogService.OpenAsync<EditCustomer>("Edit Customer", new Dictionary<string, object>() { {"customersID", args.customersID} });
+            if (args?.Value == "csv")
+            {
+                await AccountingDb.ExportCustomersToCSV(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "", Select = "customersID,Company_Name,Company_Address,Company_Telephone_Number,Company_City,Registration_date,Contact_Person_Name,Contact_Person_Designation,Contact_Person_Tel_number,customer_img,DateAdded,Added_By,revenueAccount,expenseAccount" }, $"Customers");
+
+            }
+
+            if (args == null || args.Value == "xlsx")
+            {
+                await AccountingDb.ExportCustomersToExcel(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "", Select = "customersID,Company_Name,Company_Address,Company_Telephone_Number,Company_City,Registration_date,Contact_Person_Name,Contact_Person_Designation,Contact_Person_Tel_number,customer_img,DateAdded,Added_By,revenueAccount,expenseAccount" }, $"Customers");
+
+            }
+        }
+
+        protected async System.Threading.Tasks.Task Grid0RowDoubleClick(DataGridRowMouseEventArgs<Accounting.Models.AccountingDb.Customer> args)
+        {
+            var dialogResult = await DialogService.OpenAsync<EditCustomer>("Edit Customer", new Dictionary<string, object>() { {"customersID", args.Data.customersID} });
             await InvokeAsync(() => { StateHasChanged(); });
         }
 

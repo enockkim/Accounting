@@ -722,8 +722,8 @@
     ]
   },
   "name": "Edit Supplier",
-  "layout": "Main",
   "access": [
     "Authenticated"
-  ]
+  ],
+  "layout": "Main"
 }

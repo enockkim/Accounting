@@ -31,6 +31,16 @@ namespace Accounting.Data
               .WithMany(i => i.TblAccounts)
               .HasForeignKey(i => i.account_type_id)
               .HasPrincipalKey(i => i.account_type_id);
+        builder.Entity<Accounting.Models.AccountingDb.TblTransaction>()
+              .HasOne(i => i.TblAccount)
+              .WithMany(i => i.TblTransactions)
+              .HasForeignKey(i => i.account_id)
+              .HasPrincipalKey(i => i.gl_account_no);
+        builder.Entity<Accounting.Models.AccountingDb.TblTransaction>()
+              .HasOne(i => i.AccountType)
+              .WithMany(i => i.TblTransactions)
+              .HasForeignKey(i => i.account_type)
+              .HasPrincipalKey(i => i.account_type_id);
 
         builder.Entity<Accounting.Models.AccountingDb.Customer>()
               .Property(p => p.DateAdded)

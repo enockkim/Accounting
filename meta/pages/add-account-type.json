@@ -196,8 +196,8 @@
     ]
   },
   "name": "Add Account Type",
-  "layout": "Main",
   "access": [
     "Authenticated"
-  ]
+  ],
+  "layout": "Main"
 }

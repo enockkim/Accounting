@@ -16,15 +16,28 @@
     </RadzenHeading>
     <div class="row">
       <div class="col-md-12">
-        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Visible="false" Click="@Button0Click">
         </RadzenButton>
-        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getTblTransactionsResult" TItem="Accounting.Models.AccountingDb.TblTransaction" RowSelect="@Grid0RowSelect">
+        <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="CSV" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblTransactionsResult" FilterMode="Radzen.FilterMode.Advanced" TItem="Accounting.Models.AccountingDb.TblTransaction" RowDoubleClick="@Grid0RowDoubleClick">
           <Columns>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" Property="transaction_id" Title="Transaction Id">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" Property="general_ledger_id" Title="General Ledger Id">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" Property="account_id" Title="Account Id">
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" FilterProperty="TblAccount.gl_account_name" GroupProperty="TblAccount.gl_account_name" Property="account_id" SortProperty="TblAccount.gl_account_name" Title="Tbl Account">
+              <Template Context="data">
+              @(data.TblAccount?.gl_account_name)
+              </Template>
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" Property="description" Title="Description">
             </RadzenDataGridColumn>
@@ -32,9 +45,12 @@
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" Property="debit" Title="Debit">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" Property="account_type" Title="Account Type">
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" FilterProperty="AccountType.account_type_name" GroupProperty="AccountType.account_type_name" Property="account_type" SortProperty="AccountType.account_type_name" Title="Account Type">
+              <Template Context="data">
+              @(data.AccountType?.account_type_name)
+              </Template>
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblTransaction" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
               <Template Context="accountingModelsAccountingDbTblTransaction">
                 <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, accountingModelsAccountingDbTblTransaction))" @onclick:stopPropagation="true">
                 </RadzenButton>

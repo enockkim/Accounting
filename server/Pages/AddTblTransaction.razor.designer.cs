@@ -56,6 +56,44 @@ namespace Accounting.Pages
         [Inject]
         protected AccountingDbService AccountingDb { get; set; }
 
+        IEnumerable<Accounting.Models.AccountingDb.TblAccount> _getTblAccountsForaccount_idResult;
+        protected IEnumerable<Accounting.Models.AccountingDb.TblAccount> getTblAccountsForaccount_idResult
+        {
+            get
+            {
+                return _getTblAccountsForaccount_idResult;
+            }
+            set
+            {
+                if (!object.Equals(_getTblAccountsForaccount_idResult, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "getTblAccountsForaccount_idResult", NewValue = value, OldValue = _getTblAccountsForaccount_idResult };
+                    _getTblAccountsForaccount_idResult = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
+        IEnumerable<Accounting.Models.AccountingDb.AccountType> _getAccountTypesForaccount_typeResult;
+        protected IEnumerable<Accounting.Models.AccountingDb.AccountType> getAccountTypesForaccount_typeResult
+        {
+            get
+            {
+                return _getAccountTypesForaccount_typeResult;
+            }
+            set
+            {
+                if (!object.Equals(_getAccountTypesForaccount_typeResult, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "getAccountTypesForaccount_typeResult", NewValue = value, OldValue = _getAccountTypesForaccount_typeResult };
+                    _getAccountTypesForaccount_typeResult = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         Accounting.Models.AccountingDb.TblTransaction _tbltransaction;
         protected Accounting.Models.AccountingDb.TblTransaction tbltransaction
         {
@@ -89,6 +127,12 @@ namespace Accounting.Pages
         }
         protected async System.Threading.Tasks.Task Load()
         {
+            var accountingDbGetTblAccountsResult = await AccountingDb.GetTblAccounts();
+            getTblAccountsForaccount_idResult = accountingDbGetTblAccountsResult;
+
+            var accountingDbGetAccountTypesResult = await AccountingDb.GetAccountTypes();
+            getAccountTypesForaccount_typeResult = accountingDbGetAccountTypesResult;
+
             tbltransaction = new Accounting.Models.AccountingDb.TblTransaction(){};
         }
 

@@ -74,8 +74,8 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@getAccountTypesResult" TextProperty="account_type_name" ValueProperty="account_type_id" Placeholder="Choose AccountType" style="display: block; width: 100%" @bind-Value="@(tblaccount.account_type_id)" Name="Account_type_id">
-                </RadzenDropDown>
+                <RadzenDropDownDataGrid Data="@(getAccountTypesForaccount_type_idResult)" TextProperty="account_type_name" ValueProperty="account_type_id" Placeholder="Choose AccountType" ShowSearch="false" style="display: block; width: 100%" @bind-Value="@(tblaccount.account_type_id)" Name="Account_type_id">
+                </RadzenDropDownDataGrid>
                 <RadzenRequiredValidator Component="Account_type_id" Text="account_type_id is required" style="position: absolute" DefaultValue="0">
                 </RadzenRequiredValidator>
               </div>

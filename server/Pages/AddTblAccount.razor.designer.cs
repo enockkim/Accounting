@@ -56,19 +56,19 @@ namespace Accounting.Pages
         [Inject]
         protected AccountingDbService AccountingDb { get; set; }
 
-        IEnumerable<Accounting.Models.AccountingDb.AccountType> _getAccountTypesResult;
-        protected IEnumerable<Accounting.Models.AccountingDb.AccountType> getAccountTypesResult
+        IEnumerable<Accounting.Models.AccountingDb.AccountType> _getAccountTypesForaccount_type_idResult;
+        protected IEnumerable<Accounting.Models.AccountingDb.AccountType> getAccountTypesForaccount_type_idResult
         {
             get
             {
-                return _getAccountTypesResult;
+                return _getAccountTypesForaccount_type_idResult;
             }
             set
             {
-                if (!object.Equals(_getAccountTypesResult, value))
+                if (!object.Equals(_getAccountTypesForaccount_type_idResult, value))
                 {
-                    var args = new PropertyChangedEventArgs(){ Name = "getAccountTypesResult", NewValue = value, OldValue = _getAccountTypesResult };
-                    _getAccountTypesResult = value;
+                    var args = new PropertyChangedEventArgs(){ Name = "getAccountTypesForaccount_type_idResult", NewValue = value, OldValue = _getAccountTypesForaccount_type_idResult };
+                    _getAccountTypesForaccount_type_idResult = value;
                     OnPropertyChanged(args);
                     Reload();
                 }
@@ -109,7 +109,7 @@ namespace Accounting.Pages
         protected async System.Threading.Tasks.Task Load()
         {
             var accountingDbGetAccountTypesResult = await AccountingDb.GetAccountTypes();
-            getAccountTypesResult = accountingDbGetAccountTypesResult;
+            getAccountTypesForaccount_type_idResult = accountingDbGetAccountTypesResult;
 
             tblaccount = new Accounting.Models.AccountingDb.TblAccount(){};
         }

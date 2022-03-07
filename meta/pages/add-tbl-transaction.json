@@ -65,7 +65,7 @@
                           "components": [
                             {
                               "type": "label",
-                              "text": "Account Id",
+                              "text": "Tbl Account",
                               "component": "account_id",
                               "name": "account_idLabel",
                               "style": {
@@ -79,8 +79,13 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblAccountsForaccount_idResult}",
+                              "textProperty": "gl_account_name",
+                              "valueProperty": "gl_account_no",
+                              "placeholder": "Choose TblAccount",
                               "valueType": "int?",
-                              "type": "numeric",
+                              "showSearch": false,
+                              "type": "dropdown-datagrid",
                               "name": "account_id",
                               "style": {
                                 "width": "100%"
@@ -232,8 +237,13 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getAccountTypesForaccount_typeResult}",
+                              "textProperty": "account_type_name",
+                              "valueProperty": "account_type_id",
+                              "placeholder": "Choose AccountType",
                               "valueType": "int?",
-                              "type": "numeric",
+                              "showSearch": false,
+                              "type": "dropdown-datagrid",
                               "name": "account_type",
                               "style": {
                                 "width": "100%"
@@ -320,6 +330,32 @@
   "events": {
     "load": [
       {
+        "name": "accounting_db.getTblAccounts",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblAccountsForaccount_idResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<Accounting.Models.AccountingDb.TblAccount>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "accounting_db.getAccountTypes",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getAccountTypesForaccount_typeResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<Accounting.Models.AccountingDb.AccountType>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
         "name": "tbltransaction",
         "type": "set",
         "value": "new Accounting.Models.AccountingDb.TblTransaction(){}",
@@ -328,8 +364,8 @@
     ]
   },
   "name": "Add Tbl Transaction",
-  "layout": "Main",
   "access": [
     "Authenticated"
-  ]
+  ],
+  "layout": "Main"
 }

@@ -9,42 +9,31 @@
 @using Microsoft.AspNetCore.Identity;
 @using Accounting.Models
 @using Microsoft.AspNetCore.Authorization
-
 @attribute [Authorize]
 <PageTitle>Dashboard</PageTitle>
 <RadzenContent Container="main">
-    <ChildContent>
-        <RadzenHeading Size="H1" Text="Dashboard">
-        </RadzenHeading>
-        <div class="row" style="margin-bottom: 15px">
-            <div class="col-md-4">
-                <RadzenCard style="height: 350px; width: 350px">
-                </RadzenCard>
-            </div>
-            <div class="col-md-4">
-                <RadzenCard style="height: 350px; width: 350px">
-                </RadzenCard>
-            </div>
-            <div class="col-md-4">
-                <RadzenCard style="height: 350px; width: 350px">
-                </RadzenCard>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <RadzenCard style="height: 300px; width: 715px">
-                </RadzenCard>
-            </div>
-            <div class="col-md-4">
-                <RadzenCard style="height: 300px; width: 350px">
-                </RadzenCard>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <RadzenCard style="height: 300px; width: 1050px">
-                </RadzenCard>
-            </div>
-        </div>
-    </ChildContent>
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Dashboard">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-4" style="padding-bottom: 5px; padding-left: 5px; padding-right: 5px">
+        <RadzenCard style="height: 250px; margin-left: 10px; width: 250px">
+        </RadzenCard>
+      </div>
+      <div class="col-md-4">
+        <RadzenCard style="height: 250px; width: 250px">
+        </RadzenCard>
+      </div>
+      <div class="col-md-4">
+        <RadzenCard style="height: 250px; width: 250px">
+        </RadzenCard>
+      </div>
+      <div class="col-md-8">
+        <RadzenCard style="height: 300px; width: 600px">
+        </RadzenCard>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </ChildContent>
 </RadzenContent>

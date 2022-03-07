@@ -9,7 +9,7 @@
 @using Accounting.Models
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
-<PageTitle>Add Account</PageTitle>
+<PageTitle>Add Tbl Account</PageTitle>
 <RadzenContent Container="main">
   <ChildContent>
     <div class="row">
@@ -18,7 +18,7 @@
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Account Name" Component="gl_account_name" style="width: 100%">
+                <RadzenLabel Text="Gl Account Name" Component="gl_account_name" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
@@ -74,8 +74,8 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@getAccountTypesResult" TextProperty="account_type_name" ValueProperty="account_type_id" Placeholder="Choose AccountType" style="display: block; width: 100%" @bind-Value="@(tblaccount.account_type_id)" Name="Account_type_id">
-                </RadzenDropDown>
+                <RadzenDropDownDataGrid Data="@(getAccountTypesForaccount_type_idResult)" TextProperty="account_type_name" ValueProperty="account_type_id" Placeholder="Choose AccountType" ShowSearch="false" style="display: block; width: 100%" @bind-Value="@(tblaccount.account_type_id)" Name="Account_type_id">
+                </RadzenDropDownDataGrid>
                 <RadzenRequiredValidator Component="Account_type_id" Text="account_type_id is required" style="position: absolute" DefaultValue="0">
                 </RadzenRequiredValidator>
               </div>

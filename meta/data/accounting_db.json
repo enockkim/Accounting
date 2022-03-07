@@ -22,6 +22,11 @@
               "inversePropertyName": "AccountType",
               "name": "TblAccounts",
               "type": "TblAccount"
+            },
+            {
+              "inversePropertyName": "AccountType",
+              "name": "TblTransactions",
+              "type": "TblTransaction"
             }
           ]
         },
@@ -34,6 +39,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/TblAccount"
+          }
+        },
+        "TblTransactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblTransaction"
           }
         }
       }
@@ -222,7 +233,14 @@
           "x-key": true,
           "x-identity": true,
           "x-nullable": false,
-          "type": "integer"
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "TblAccount",
+              "name": "TblTransactions",
+              "type": "TblTransaction"
+            }
+          ]
         },
         "gl_account_name": {
           "x-nullable": false,
@@ -262,6 +280,12 @@
             "textProperty": "account_type_name",
             "navigationProperty": "TblAccounts"
           }
+        },
+        "TblTransactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblTransaction"
+          }
         }
       }
     },
@@ -279,8 +303,21 @@
         "general_ledger_id": {
           "type": "integer"
         },
+        "TblAccount": {
+          "type": "object",
+          "$ref": "#/definitions/TblAccount"
+        },
         "account_id": {
-          "type": "integer"
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "tbl_accounts",
+            "parentEntityType": "TblAccount",
+            "type": "TblAccount",
+            "principalKey": "gl_account_no",
+            "name": "TblAccount",
+            "textProperty": "gl_account_name",
+            "navigationProperty": "TblTransactions"
+          }
         },
         "description": {
           "type": "string",
@@ -292,8 +329,21 @@
         "debit": {
           "type": "integer"
         },
+        "AccountType": {
+          "type": "object",
+          "$ref": "#/definitions/AccountType"
+        },
         "account_type": {
-          "type": "integer"
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "account_type",
+            "parentEntityType": "AccountType",
+            "type": "AccountType",
+            "principalKey": "account_type_id",
+            "name": "AccountType",
+            "textProperty": "account_type_name",
+            "navigationProperty": "TblTransactions"
+          }
         }
       }
     }
