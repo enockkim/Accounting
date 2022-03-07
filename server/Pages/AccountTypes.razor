@@ -1,0 +1,38 @@
+﻿@page "/account-types"
+@layout MainLayout
+@inherits Accounting.Pages.AccountTypesComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Accounting.Models.AccountingDb
+@using Microsoft.AspNetCore.Identity;
+@using Accounting.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Account Types</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Account Types">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getAccountTypesResult" TItem="Accounting.Models.AccountingDb.AccountType" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.AccountType" Property="account_type_id" Title="Account Type Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.AccountType" Property="account_type_name" Title="Account Type Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.AccountType" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="accountingModelsAccountingDbAccountType">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, accountingModelsAccountingDbAccountType))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

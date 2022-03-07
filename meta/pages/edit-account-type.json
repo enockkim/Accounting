@@ -1,0 +1,221 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Account Type Id",
+                              "component": "account_type_id",
+                              "name": "account_type_idLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "int",
+                              "type": "numeric",
+                              "name": "account_type_id",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${accounttype.account_type_id}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "account_type_idRequiredValidator",
+                              "component": "account_type_id",
+                              "text": "account_type_id is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Account Type Name",
+                              "component": "account_type_name",
+                              "name": "account_type_nameLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 200,
+                              "type": "textbox",
+                              "name": "account_type_name",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${accounttype.account_type_name}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "account_type_nameRequiredValidator",
+                              "component": "account_type_name",
+                              "text": "account_type_name is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update AccountType",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "accounting_db.updateAccountType",
+                        "parameters": [
+                          {
+                            "name": "account_type_id",
+                            "value": "${parameters.account_type_id}"
+                          },
+                          {
+                            "name": "AccountType",
+                            "value": "${accounttype}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${accounttype}",
+                            "condition": ""
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "Accounting.Models.AccountingDb.AccountType",
+                  "data": "${accounttype}",
+                  "visible": "${accounttype != null}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "accounting_db.getAccountTypeByaccount_type_id",
+        "parameters": [
+          {
+            "name": "account_type_id",
+            "value": "${parameters.account_type_id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "accounttype",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "Accounting.Models.AccountingDb.AccountType"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Account Type",
+  "layout": "Main",
+  "access": [
+    "Authenticated"
+  ]
+}

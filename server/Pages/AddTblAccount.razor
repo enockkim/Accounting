@@ -1,0 +1,96 @@
+﻿@page "/add-tbl-account"
+@layout MainLayout
+@inherits Accounting.Pages.AddTblAccountComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Accounting.Models.AccountingDb
+@using Microsoft.AspNetCore.Identity;
+@using Accounting.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Add Account</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@tblaccount" Visible="@(tblaccount != null)" TItem="Accounting.Models.AccountingDb.TblAccount" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Account Name" Component="gl_account_name" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="45" style="display: block; width: 100%" @bind-Value="@(tblaccount.gl_account_name)" Name="Gl_account_name">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Gl_account_name" Text="gl_account_name is required" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Current Balance" Component="current_balance" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblaccount.current_balance)" Name="Current_balance">
+                </RadzenNumeric>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Opening Balance" Component="opening_balance" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="45" style="width: 100%" @bind-Value="@(tblaccount.opening_balance)" Name="Opening_balance">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Date" Component="date" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@(tblaccount.date)" Name="Date">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Status" Component="status" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="45" style="width: 100%" @bind-Value="@(tblaccount.status)" Name="Status">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Account Type" Component="account_type_id" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Data="@getAccountTypesResult" TextProperty="account_type_name" ValueProperty="account_type_id" Placeholder="Choose AccountType" style="display: block; width: 100%" @bind-Value="@(tblaccount.account_type_id)" Name="Account_type_id">
+                </RadzenDropDown>
+                <RadzenRequiredValidator Component="Account_type_id" Text="account_type_id is required" style="position: absolute" DefaultValue="0">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save" ButtonStyle="ButtonStyle.Primary">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

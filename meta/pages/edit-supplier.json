@@ -1,0 +1,729 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Company Name",
+                              "component": "Company_Name",
+                              "name": "Company_NameLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 100,
+                              "type": "textbox",
+                              "name": "Company_Name",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Company_Name}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Company_NameRequiredValidator",
+                              "component": "Company_Name",
+                              "text": "Company_Name is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Company Address",
+                              "component": "Company_Address",
+                              "name": "Company_AddressLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 100,
+                              "type": "textbox",
+                              "name": "Company_Address",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Company_Address}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Company_AddressRequiredValidator",
+                              "component": "Company_Address",
+                              "text": "Company_Address is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Company Telephone Number",
+                              "component": "Company_Telephone_Number",
+                              "name": "Company_Telephone_NumberLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 50,
+                              "type": "textbox",
+                              "name": "Company_Telephone_Number",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Company_Telephone_Number}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Company_Telephone_NumberRequiredValidator",
+                              "component": "Company_Telephone_Number",
+                              "text": "Company_Telephone_Number is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Company City",
+                              "component": "Company_City",
+                              "name": "Company_CityLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 100,
+                              "type": "textbox",
+                              "name": "Company_City",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Company_City}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Company_CityRequiredValidator",
+                              "component": "Company_City",
+                              "text": "Company_City is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Registration Date",
+                              "component": "Registration_date",
+                              "name": "Registration_dateLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "DateTime",
+                              "dateFormat": "MM/dd/yyyy",
+                              "type": "datepicker",
+                              "name": "Registration_date",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Registration_date}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Registration_dateRequiredValidator",
+                              "component": "Registration_date",
+                              "text": "Registration_date is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Contact Person Name",
+                              "component": "Contact_Person_Name",
+                              "name": "Contact_Person_NameLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 100,
+                              "type": "textbox",
+                              "name": "Contact_Person_Name",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Contact_Person_Name}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Contact_Person_NameRequiredValidator",
+                              "component": "Contact_Person_Name",
+                              "text": "Contact_Person_Name is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Contact Person Designation",
+                              "component": "Contact_Person_Designation",
+                              "name": "Contact_Person_DesignationLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 100,
+                              "type": "textbox",
+                              "name": "Contact_Person_Designation",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Contact_Person_Designation}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Contact_Person_DesignationRequiredValidator",
+                              "component": "Contact_Person_Designation",
+                              "text": "Contact_Person_Designation is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Contact Person Tel Number",
+                              "component": "Contact_Person_Tel_number",
+                              "name": "Contact_Person_Tel_numberLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 50,
+                              "type": "textbox",
+                              "name": "Contact_Person_Tel_number",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Contact_Person_Tel_number}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Contact_Person_Tel_numberRequiredValidator",
+                              "component": "Contact_Person_Tel_number",
+                              "text": "Contact_Person_Tel_number is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Supplier Img",
+                              "component": "supplier_img",
+                              "name": "supplier_imgLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 100,
+                              "type": "textbox",
+                              "name": "supplier_img",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.supplier_img}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "supplier_imgRequiredValidator",
+                              "component": "supplier_img",
+                              "text": "supplier_img is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Date Added",
+                              "component": "DateAdded",
+                              "name": "DateAddedLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "DateTime",
+                              "dateFormat": "MM/dd/yyyy",
+                              "type": "datepicker",
+                              "name": "DateAdded",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${supplier.DateAdded}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Added By",
+                              "component": "Added_By",
+                              "name": "Added_ByLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 50,
+                              "type": "textbox",
+                              "name": "Added_By",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${supplier.Added_By}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Added_ByRequiredValidator",
+                              "component": "Added_By",
+                              "text": "Added_By is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Expense Account",
+                              "component": "expenseAccount",
+                              "name": "expenseAccountLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "int?",
+                              "type": "numeric",
+                              "name": "expenseAccount",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${supplier.expenseAccount}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Revenue Account",
+                              "component": "revenueAccount",
+                              "name": "revenueAccountLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "int?",
+                              "type": "numeric",
+                              "name": "revenueAccount",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${supplier.revenueAccount}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update Supplier",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "accounting_db.updateSupplier",
+                        "parameters": [
+                          {
+                            "name": "suppliersID",
+                            "value": "${parameters.suppliersID}"
+                          },
+                          {
+                            "name": "Supplier",
+                            "value": "${supplier}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${supplier}",
+                            "condition": ""
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "Accounting.Models.AccountingDb.Supplier",
+                  "data": "${supplier}",
+                  "visible": "${supplier != null}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "accounting_db.getSupplierBysuppliersID",
+        "parameters": [
+          {
+            "name": "suppliersID",
+            "value": "${parameters.suppliersID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "supplier",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "Accounting.Models.AccountingDb.Supplier"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Supplier",
+  "layout": "Main",
+  "access": [
+    "Authenticated"
+  ]
+}

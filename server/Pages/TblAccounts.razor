@@ -1,0 +1,51 @@
+﻿@page "/tbl-accounts"
+@layout MainLayout
+@inherits Accounting.Pages.TblAccountsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Accounting.Models.AccountingDb
+@using Microsoft.AspNetCore.Identity;
+@using Accounting.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Charts of Accounts</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Charts of Accounts">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getTblAccountsResult" TItem="Accounting.Models.AccountingDb.TblAccount" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Property="gl_account_no" Title="Gl Account No">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Property="gl_account_name" Title="Gl Account Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Property="current_balance" Title="Current Balance">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Property="opening_balance" Title="Opening Balance">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Property="date" FormatString="{0:MM/dd/yyyy}" Title="Date">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Property="status" Title="Status">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Property="account_type_id" SortProperty="AccountType.account_type_name" GroupProperty="AccountType.account_type_name" FilterProperty="AccountType.account_type_name" Title="Account Type">
+              <Template Context="data">
+              @(data.AccountType?.account_type_name)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.TblAccount" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="accountingModelsAccountingDbTblAccount">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, accountingModelsAccountingDbTblAccount))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

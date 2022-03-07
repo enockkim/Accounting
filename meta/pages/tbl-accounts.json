@@ -1,0 +1,200 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Tbl Accounts"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-tbl-account",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "filterMode": "advanced",
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getTblAccountsResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "gl_account_no",
+                            "value": "${event.gl_account_no}"
+                          }
+                        ],
+                        "path": "edit-tbl-account",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "gl_account_no",
+                      "title": "Gl Account No"
+                    },
+                    {
+                      "property": "gl_account_name",
+                      "title": "Gl Account Name"
+                    },
+                    {
+                      "property": "current_balance",
+                      "title": "Current Balance"
+                    },
+                    {
+                      "property": "opening_balance",
+                      "title": "Opening Balance"
+                    },
+                    {
+                      "property": "date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Date"
+                    },
+                    {
+                      "property": "status",
+                      "title": "Status"
+                    },
+                    {
+                      "property": "account_type_id",
+                      "sortProperty": "AccountType.account_type_name",
+                      "groupProperty": "AccountType.account_type_name",
+                      "filterProperty": "AccountType.account_type_name",
+                      "template": "${data.AccountType?.account_type_name}",
+                      "title": "Account Type"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete TblAccount",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "accounting_db.deleteTblAccount",
+                                "parameters": [
+                                  {
+                                    "name": "gl_account_no",
+                                    "value": "${data.gl_account_no}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "await grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "datagrid",
+                  "itemType": "Accounting.Models.AccountingDb.TblAccount"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "accounting_db.getTblAccounts",
+        "parameters": [
+          {
+            "name": "$expand",
+            "value": "AccountType"
+          }
+        ],
+        "then": [
+          {
+            "name": "getTblAccountsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<Accounting.Models.AccountingDb.TblAccount>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Tbl Accounts",
+  "layout": "Main",
+  "access": [
+    "Authenticated"
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Suppliers"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-supplier",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "filterMode": "advanced",
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getSuppliersResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "suppliersID",
+                            "value": "${event.suppliersID}"
+                          }
+                        ],
+                        "path": "edit-supplier",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "suppliersID",
+                      "title": "Suppliers ID"
+                    },
+                    {
+                      "property": "Company_Name",
+                      "title": "Company Name"
+                    },
+                    {
+                      "property": "Company_Address",
+                      "title": "Company Address"
+                    },
+                    {
+                      "property": "Company_Telephone_Number",
+                      "title": "Company Telephone Number"
+                    },
+                    {
+                      "property": "Company_City",
+                      "title": "Company City"
+                    },
+                    {
+                      "property": "Registration_date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Registration Date"
+                    },
+                    {
+                      "property": "Contact_Person_Name",
+                      "title": "Contact Person Name"
+                    },
+                    {
+                      "property": "Contact_Person_Designation",
+                      "title": "Contact Person Designation"
+                    },
+                    {
+                      "property": "Contact_Person_Tel_number",
+                      "title": "Contact Person Tel Number"
+                    },
+                    {
+                      "property": "supplier_img",
+                      "title": "Supplier Img"
+                    },
+                    {
+                      "property": "DateAdded",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Date Added"
+                    },
+                    {
+                      "property": "Added_By",
+                      "title": "Added By"
+                    },
+                    {
+                      "property": "expenseAccount",
+                      "title": "Expense Account"
+                    },
+                    {
+                      "property": "revenueAccount",
+                      "title": "Revenue Account"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete Supplier",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "accounting_db.deleteSupplier",
+                                "parameters": [
+                                  {
+                                    "name": "suppliersID",
+                                    "value": "${data.suppliersID}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "await grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "datagrid",
+                  "itemType": "Accounting.Models.AccountingDb.Supplier"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "accounting_db.getSuppliers",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getSuppliersResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<Accounting.Models.AccountingDb.Supplier>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Suppliers",
+  "layout": "Main",
+  "access": [
+    "Authenticated"
+  ]
+}

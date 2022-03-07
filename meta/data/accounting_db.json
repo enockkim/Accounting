@@ -1,0 +1,1148 @@
+{
+  "info": {
+    "title": "accounting_db",
+    "x-type": "odata",
+    "x-connector": "mysql"
+  },
+  "definitions": {
+    "AccountType": {
+      "x-table": "def.account_type",
+      "resource": "AccountTypes",
+      "required": [
+        "account_type_id",
+        "account_type_name"
+      ],
+      "properties": {
+        "account_type_id": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "AccountType",
+              "name": "TblAccounts",
+              "type": "TblAccount"
+            }
+          ]
+        },
+        "account_type_name": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 200
+        },
+        "TblAccounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblAccount"
+          }
+        }
+      }
+    },
+    "Customer": {
+      "x-table": "def.customers",
+      "resource": "Customers",
+      "required": [
+        "Company_Name",
+        "Company_Address",
+        "Company_Telephone_Number",
+        "Company_City",
+        "Registration_date",
+        "Contact_Person_Name",
+        "Contact_Person_Designation",
+        "Contact_Person_Tel_number",
+        "customer_img",
+        "Added_By"
+      ],
+      "properties": {
+        "customersID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Company_Name": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Company_Address": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Company_Telephone_Number": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "Company_City": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Registration_date": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Contact_Person_Name": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Contact_Person_Designation": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Contact_Person_Tel_number": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "customer_img": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "DateAdded": {
+          "x-default-sql": "CURRENT_TIMESTAMP",
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Added_By": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "revenueAccount": {
+          "type": "integer"
+        },
+        "expenseAccount": {
+          "type": "integer"
+        }
+      }
+    },
+    "Supplier": {
+      "x-table": "def.suppliers",
+      "resource": "Suppliers",
+      "required": [
+        "Company_Name",
+        "Company_Address",
+        "Company_Telephone_Number",
+        "Company_City",
+        "Registration_date",
+        "Contact_Person_Name",
+        "Contact_Person_Designation",
+        "Contact_Person_Tel_number",
+        "supplier_img",
+        "Added_By"
+      ],
+      "properties": {
+        "suppliersID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Company_Name": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Company_Address": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Company_Telephone_Number": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "Company_City": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Registration_date": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Contact_Person_Name": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Contact_Person_Designation": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Contact_Person_Tel_number": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "supplier_img": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "DateAdded": {
+          "x-default-sql": "CURRENT_TIMESTAMP",
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Added_By": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "expenseAccount": {
+          "type": "integer"
+        },
+        "revenueAccount": {
+          "type": "integer"
+        }
+      }
+    },
+    "TblAccount": {
+      "x-table": "def.tbl_accounts",
+      "resource": "TblAccounts",
+      "required": [
+        "gl_account_name",
+        "account_type_id"
+      ],
+      "properties": {
+        "gl_account_no": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "gl_account_name": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 45
+        },
+        "current_balance": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "opening_balance": {
+          "type": "string",
+          "length": 45
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "x-default-sql": "active",
+          "type": "string",
+          "length": 45
+        },
+        "AccountType": {
+          "type": "object",
+          "$ref": "#/definitions/AccountType"
+        },
+        "account_type_id": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "account_type",
+            "parentEntityType": "AccountType",
+            "type": "AccountType",
+            "principalKey": "account_type_id",
+            "name": "AccountType",
+            "textProperty": "account_type_name",
+            "navigationProperty": "TblAccounts"
+          }
+        }
+      }
+    },
+    "TblTransaction": {
+      "x-table": "def.tbl_transactions",
+      "resource": "TblTransactions",
+      "required": [],
+      "properties": {
+        "transaction_id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "general_ledger_id": {
+          "type": "integer"
+        },
+        "account_id": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string",
+          "length": 45
+        },
+        "credit": {
+          "type": "integer"
+        },
+        "debit": {
+          "type": "integer"
+        },
+        "account_type": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/AccountTypes": {
+      "get": {
+        "operationId": "getAccountTypes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AccountType"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAccountType",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AccountType",
+            "schema": {
+              "$ref": "#/definitions/AccountType"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AccountType"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Customers": {
+      "get": {
+        "operationId": "getCustomers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Customer"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCustomer",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Customer",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Suppliers": {
+      "get": {
+        "operationId": "getSuppliers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Supplier"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSupplier",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Supplier",
+            "schema": {
+              "$ref": "#/definitions/Supplier"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Supplier"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblAccounts": {
+      "get": {
+        "operationId": "getTblAccounts",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblAccount"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblAccount",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblAccount",
+            "schema": {
+              "$ref": "#/definitions/TblAccount"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblAccount"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblTransactions": {
+      "get": {
+        "operationId": "getTblTransactions",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblTransaction"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblTransaction",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblTransaction",
+            "schema": {
+              "$ref": "#/definitions/TblTransaction"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblTransaction"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AccountTypes({account_type_id})": {
+      "delete": {
+        "operationId": "deleteAccountType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_type_id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAccountTypeByaccount_type_id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_type_id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AccountType"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAccountType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_type_id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "AccountType",
+            "schema": {
+              "$ref": "#/definitions/AccountType"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAccountTypeChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AccountType",
+            "schema": {
+              "$ref": "#/definitions/AccountType"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Customers({customersID})": {
+      "delete": {
+        "operationId": "deleteCustomer",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customersID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCustomerBycustomersID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customersID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCustomer",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customersID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Customer",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelCustomerChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Customer",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Suppliers({suppliersID})": {
+      "delete": {
+        "operationId": "deleteSupplier",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "suppliersID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSupplierBysuppliersID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "suppliersID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Supplier"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateSupplier",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "suppliersID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Supplier",
+            "schema": {
+              "$ref": "#/definitions/Supplier"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelSupplierChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Supplier",
+            "schema": {
+              "$ref": "#/definitions/Supplier"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblAccounts({gl_account_no})": {
+      "delete": {
+        "operationId": "deleteTblAccount",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "gl_account_no",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblAccountBygl_account_no",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "gl_account_no",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblAccount"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblAccount",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "gl_account_no",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TblAccount",
+            "schema": {
+              "$ref": "#/definitions/TblAccount"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblAccountChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblAccount",
+            "schema": {
+              "$ref": "#/definitions/TblAccount"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblTransactions({transaction_id})": {
+      "delete": {
+        "operationId": "deleteTblTransaction",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transaction_id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblTransactionBytransaction_id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transaction_id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblTransaction"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblTransaction",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transaction_id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TblTransaction",
+            "schema": {
+              "$ref": "#/definitions/TblTransaction"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblTransactionChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblTransaction",
+            "schema": {
+              "$ref": "#/definitions/TblTransaction"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/AccountingDb",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

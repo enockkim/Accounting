@@ -1,0 +1,144 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Accounting
+build_property.RootNamespace = Accounting
+build_property.ProjectDir = C:\Users\enock\Documents\RadzenWeball\Accounting\server\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\enock\Documents\RadzenWeball\Accounting\server
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/AccountTypes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFR5cGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/AddAccountType.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQWNjb3VudFR5cGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/AddApplicationRole.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQXBwbGljYXRpb25Sb2xlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/AddApplicationUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQXBwbGljYXRpb25Vc2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/AddCustomer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQ3VzdG9tZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/AddSupplier.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkU3VwcGxpZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/AddTblAccount.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVGJsQWNjb3VudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/AddTblTransaction.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVGJsVHJhbnNhY3Rpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/ApplicationRoles.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwbGljYXRpb25Sb2xlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/ApplicationUsers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwbGljYXRpb25Vc2Vycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/Customers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/EditAccountType.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdEFjY291bnRUeXBlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/EditApplicationUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdEFwcGxpY2F0aW9uVXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/EditCustomer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdEN1c3RvbWVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/EditSupplier.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFN1cHBsaWVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/EditTblAccount.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFRibEFjY291bnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/EditTblTransaction.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFRibFRyYW5zYWN0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/RegisterApplicationUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJBcHBsaWNhdGlvblVzZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/Suppliers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/TblAccounts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGJsQWNjb3VudHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/TblTransactions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGJsVHJhbnNhY3Rpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/Unauthorized.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5hdXRob3JpemVkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Shared/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Shared/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlZGlyZWN0VG9Mb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/enock/Documents/RadzenWeball/Accounting/server/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

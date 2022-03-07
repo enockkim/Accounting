@@ -1,0 +1,100 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Dashboard",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-4",
+              "components": [
+                {
+                  "name": "card4",
+                  "style": {
+                    "height": "250px",
+                    "marginLeft": "10px",
+                    "width": "250px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col0",
+              "style": {
+                "paddingBottom": "5px",
+                "paddingLeft": "5px",
+                "paddingRight": "5px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-md-4",
+              "components": [
+                {
+                  "name": "card1",
+                  "style": {
+                    "height": "250px",
+                    "width": "250px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            },
+            {
+              "class": "col-md-4",
+              "components": [
+                {
+                  "name": "card2",
+                  "style": {
+                    "height": "250px",
+                    "width": "250px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col2",
+              "type": "col"
+            },
+            {
+              "class": "col-md-8",
+              "components": [
+                {
+                  "name": "card3",
+                  "style": {
+                    "height": "300px",
+                    "width": "600px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col3",
+              "type": "col"
+            },
+            {
+              "class": "col-md-4",
+              "name": "col4",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "layout": "Main",
+  "name": "Dashboard"
+}

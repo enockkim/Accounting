@@ -1,0 +1,394 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Gl Account Name",
+                              "component": "gl_account_name",
+                              "name": "gl_account_nameLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 45,
+                              "type": "textbox",
+                              "name": "gl_account_name",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${tblaccount.gl_account_name}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "gl_account_nameRequiredValidator",
+                              "component": "gl_account_name",
+                              "text": "gl_account_name is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Current Balance",
+                              "component": "current_balance",
+                              "name": "current_balanceLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "decimal?",
+                              "type": "numeric",
+                              "name": "current_balance",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblaccount.current_balance}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Opening Balance",
+                              "component": "opening_balance",
+                              "name": "opening_balanceLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 45,
+                              "type": "textbox",
+                              "name": "opening_balance",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblaccount.opening_balance}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Date",
+                              "component": "date",
+                              "name": "dateLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "DateTime?",
+                              "dateFormat": "MM/dd/yyyy",
+                              "type": "datepicker",
+                              "name": "date",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblaccount.date}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Status",
+                              "component": "status",
+                              "name": "statusLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 45,
+                              "type": "textbox",
+                              "name": "status",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblaccount.status}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Account Type",
+                              "component": "account_type_id",
+                              "name": "account_type_idLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getAccountTypesResult}",
+                              "textProperty": "account_type_name",
+                              "valueProperty": "account_type_id",
+                              "placeholder": "Choose AccountType",
+                              "valueType": "int",
+                              "type": "dropdown",
+                              "name": "account_type_id",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${tblaccount.account_type_id}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "account_type_idRequiredValidator",
+                              "component": "account_type_id",
+                              "text": "account_type_id is required",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "defaultValue": "0"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblAccount",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "accounting_db.updateTblAccount",
+                        "parameters": [
+                          {
+                            "name": "gl_account_no",
+                            "value": "${parameters.gl_account_no}"
+                          },
+                          {
+                            "name": "TblAccount",
+                            "value": "${tblaccount}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblaccount}",
+                            "condition": ""
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "Accounting.Models.AccountingDb.TblAccount",
+                  "data": "${tblaccount}",
+                  "visible": "${tblaccount != null}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "accounting_db.getTblAccountBygl_account_no",
+        "parameters": [
+          {
+            "name": "gl_account_no",
+            "value": "${parameters.gl_account_no}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblaccount",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "Accounting.Models.AccountingDb.TblAccount"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      },
+      {
+        "name": "accounting_db.getAccountTypes",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getAccountTypesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<Accounting.Models.AccountingDb.AccountType>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Tbl Account",
+  "layout": "Main",
+  "access": [
+    "Authenticated"
+  ]
+}

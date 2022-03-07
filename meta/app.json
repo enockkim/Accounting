@@ -1,0 +1,70 @@
+{
+  "dataSources": [
+    "accounting_db"
+  ],
+  "generator": "@radzen/blazor-server",
+  "https": false,
+  "layouts": [
+    "Login",
+    "Main"
+  ],
+  "logo": "",
+  "name": "Accounting",
+  "navigation": [
+    "Account Types",
+    "Customers",
+    "Suppliers",
+    "Tbl Accounts",
+    "Tbl Transactions",
+    "Dashboard"
+  ],
+  "pages": [
+    "Account Types",
+    "Add Account Type",
+    "Edit Account Type",
+    "Customers",
+    "Add Customer",
+    "Edit Customer",
+    "Suppliers",
+    "Add Supplier",
+    "Edit Supplier",
+    "Tbl Accounts",
+    "Add Tbl Account",
+    "Edit Tbl Account",
+    "Tbl Transactions",
+    "Add Tbl Transaction",
+    "Edit Tbl Transaction",
+    "Login",
+    "Application Roles",
+    "Application Users",
+    "Add Application Role",
+    "Register Application User",
+    "Edit Application User",
+    "Add Application User",
+    "Profile",
+    "Unauthorized",
+    "Dashboard"
+  ],
+  "security": {
+    "autoGeneratePages": true,
+    "dataSource": "accounting_db",
+    "duration": 5,
+    "emailConfirmation": false,
+    "layout": "Main",
+    "loginLayout": "Login",
+    "loginPage": "Login",
+    "multiTenancy": false,
+    "provider": "default",
+    "sessionRefresh": false,
+    "smtpFrom": "",
+    "smtpPassword": "",
+    "smtpSSL": false,
+    "smtpServer": "",
+    "smtpUser": ""
+  },
+  "serverLang": "cs",
+  "serverProject": true,
+  "serverVersion": "6",
+  "startPage": "Dashboard",
+  "theme": "standard"
+}

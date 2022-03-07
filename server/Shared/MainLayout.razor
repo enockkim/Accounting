@@ -1,0 +1,87 @@
+﻿@inherits Accounting.Layouts.MainLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Accounting.Models.AccountingDb
+@using Microsoft.AspNetCore.Identity;
+@using Accounting.Models
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenLayout>
+  <ChildContent>
+    <RadzenHeader>
+      <ChildContent>
+        <div class="row justify-content-start align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <RadzenSidebarToggle Click="@SidebarToggle0Click">
+            </RadzenSidebarToggle>
+            <RadzenLabel Text="Accounting">
+            </RadzenLabel>
+          </div>
+          <div class="col-6 text-right">
+            <RadzenProfileMenu Visible="@(Security.IsAuthenticated())" Click="@Profilemenu0Click">
+              <ChildContent>
+                <RadzenProfileMenuItem Path="profile" Icon="settings" Text="Profile" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+                </RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Path="application-users" Icon="person" Text="Users" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+                </RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Path="application-roles" Icon="security" Text="Roles" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+                </RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new">
+                </RadzenProfileMenuItem>
+              </ChildContent>
+              <Template>
+                <RadzenGravatar Email="@(Security.User?.Name)">
+                </RadzenGravatar>
+              </Template>
+            </RadzenProfileMenu>
+          </div>
+        </div>
+      </ChildContent>
+    </RadzenHeader>
+    <RadzenBody @ref="body0">
+      <ChildContent>
+        <RadzenContentContainer Name="main">
+        @Body
+        </RadzenContentContainer>
+      </ChildContent>
+    </RadzenBody>
+    <RadzenSidebar @ref="sidebar0">
+      <ChildContent>
+        <RadzenPanelMenu style="height: 100%">
+          <ChildContent>
+            <RadzenPanelMenuItem Text="General Ledger">
+              <ChildContent>
+                <RadzenPanelMenuItem Path="tbl-accounts" Text="Charts of Accounts">
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Path="tbl-transactions" Text="Journal Entries">
+                </RadzenPanelMenuItem>
+              </ChildContent>
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Accounts Payabel">
+              <ChildContent>
+                <RadzenPanelMenuItem Path="suppliers" Text="Suppliers">
+                </RadzenPanelMenuItem>
+              </ChildContent>
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Accounts Recievable">
+              <ChildContent>
+                <RadzenPanelMenuItem Path="customers" Text="Customers">
+                </RadzenPanelMenuItem>
+              </ChildContent>
+            </RadzenPanelMenuItem>
+          </ChildContent>
+        </RadzenPanelMenu>
+      </ChildContent>
+    </RadzenSidebar>
+    <RadzenFooter>
+      <ChildContent>
+        <RadzenLabel Text="Accounting, Copyright Ⓒ 2022">
+        </RadzenLabel>
+      </ChildContent>
+    </RadzenFooter>
+  </ChildContent>
+</RadzenLayout>

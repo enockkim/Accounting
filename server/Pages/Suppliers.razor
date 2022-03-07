@@ -1,0 +1,62 @@
+﻿@page "/suppliers"
+@layout MainLayout
+@inherits Accounting.Pages.SuppliersComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Accounting.Models.AccountingDb
+@using Microsoft.AspNetCore.Identity;
+@using Accounting.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Suppliers</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Suppliers">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getSuppliersResult" TItem="Accounting.Models.AccountingDb.Supplier" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="suppliersID" Title="Suppliers ID">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Company_Name" Title="Company Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Company_Address" Title="Company Address">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Company_Telephone_Number" Title="Company Telephone Number">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Company_City" Title="Company City">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Registration_date" FormatString="{0:MM/dd/yyyy}" Title="Registration Date">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Contact_Person_Name" Title="Contact Person Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Contact_Person_Designation" Title="Contact Person Designation">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Contact_Person_Tel_number" Title="Contact Person Tel Number">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="supplier_img" Title="Supplier Img">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="DateAdded" FormatString="{0:MM/dd/yyyy}" Title="Date Added">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="Added_By" Title="Added By">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="expenseAccount" Title="Expense Account">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Property="revenueAccount" Title="Revenue Account">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Accounting.Models.AccountingDb.Supplier" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="accountingModelsAccountingDbSupplier">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, accountingModelsAccountingDbSupplier))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
