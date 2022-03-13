@@ -52,7 +52,7 @@ namespace Accounting.Data
 
         builder.Entity<Accounting.Models.AccountingDb.TblAccount>()
               .Property(p => p.status)
-              .HasDefaultValueSql("active");
+              .HasDefaultValueSql("true");
 
         this.OnModelBuilding(builder);
     }
